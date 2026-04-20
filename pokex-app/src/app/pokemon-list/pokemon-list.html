@@ -1,0 +1,60 @@
+
+
+
+
+
+
+<div class="container mt-4">
+ @if (pokemons.length === 0) {
+ <p class="text-center">Sem Pokémon disponíveis.</p>
+ }
+ <div class="mb-3 d-flex gap-2">
+ <button class="btn btn-secondary" (click)="resetPokemons()">
+ Reset
+ </button>
+</div>
+<div class="mb-4">
+ <div class="row g-2">
+ <div class="col-md-5">
+ <input
+ type="text"
+ class="form-control"
+ placeholder="Nome do Pokémon"
+ [(ngModel)]="newPokemonName"
+ >
+ </div>
+ <div class="col-md-5">
+ <input
+ type="text"
+ class="form-control"
+ placeholder="Tipo do Pokémon"
+ [(ngModel)]="newPokemonType"
+ >
+ </div>
+ <div class="col-md-2">
+ <button class="btn btn-primary w-100" (click)="addPokemon()">
+ Adicionar
+ </button>
+ </div>
+ </div>
+</div>
+
+<div class="grid">
+ @for (pokemon of pokemons; track pokemon.name) {
+ <div class="pokemon-card">
+    <img [src]="pokemon.image" [alt]="pokemon.name" class="pokemon-image">
+ <h3>{{ pokemon.name }}</h3>
+ <span class="badge" [ngClass]="'type-' + pokemon.type.toLowerCase()">{{ pokemon.type }}</span>
+ <p>Nível: {{ pokemon.level }}</p>
+
+
+ <button class="btn btn-sm btn-danger mt-2" (click)="removePokemon(pokemon.name)">
+ Remover
+ </button>
+ </div>
+ }
+</div>
+</div>
+
+
+

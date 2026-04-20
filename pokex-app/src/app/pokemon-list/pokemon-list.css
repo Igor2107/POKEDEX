@@ -1,0 +1,82 @@
+/*.grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+ gap: 16px;
+ margin-top: 20px;
+}
+.pokemon-card {
+ background-color: white;
+ border-radius: 12px;
+ padding: 16px;
+ text-align: center;
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+.pokemon-card h3 {
+ margin-bottom: 8px;
+}
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+  padding: 8px;
+}
+
+.pokemon-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13), 0 2px 6px rgba(0, 0, 0, 0.07);
+}
+
+.pokemon-card h3 {
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  text-transform: capitalize;
+}
+
+.pokemon-card p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.pokemon-card img {
+  width: 180px;
+  height: 180px;
+ /* object-fit: contain;*/
+  margin-bottom: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 4px 0;
+}
+
+.type-fire     { background-color: #E25822; color: #ffffff; }
+.type-water    { background-color: #1A8FE3; color: #ffffff; }
+.type-grass    { background-color: #3DAA4A; color: #ffffff; }
+.type-electric { background-color: #F5C518; color: #3a2a00; }
+.type-psychic  { background-color: #C44DA5; color: #ffffff; }
+.type-ice      { background-color: #4FC1C0; color: #ffffff; }
+.type-dragon   { background-color: #4A3BB7; color: #ffffff; }
+.type-ghost    { background-color: #6B4FA0; color: #ffffff; }
+.type-poison   { background-color: #A040A0; color: #ffffff; }
+.type-normal   { background-color: #9A9A7A; color: #ffffff; }
+
