@@ -1,0 +1,51 @@
+.poke-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: 0.2s;
+}
+
+.poke-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.poke-card.in-team {
+  border: 2px solid var(--blue-main);
+}
+
+.poke-card-id {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.poke-card-img {
+  width: 70px;
+  margin: 10px 0;
+}
+
+.poke-card-name {
+  font-weight: 600;
+}
+
+/* BUTTON */
+.poke-card-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 6px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--blue-main);
+  color: white;
+  cursor: pointer;
+}
+
+.poke-card-btn:hover {
+  background: var(--blue-dark);
+}
+
+.poke-card-btn.added {
+  background: #10b981;
+}

@@ -1,0 +1,77 @@
+.detail-page {
+  padding: 20px;
+}
+
+/* HEADER */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.back-btn,
+.home-link {
+  background: var(--blue-main);
+  color: white;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: none;
+  text-decoration: none;
+}
+
+/* CARD */
+.detail-card {
+  max-width: 900px;
+  margin: auto;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+}
+
+/* LEFT */
+.pokemon-hero {
+  text-align: center;
+}
+
+.pokemon-image-frame img {
+  width: 200px;
+}
+
+/* TYPES */
+.type-pill {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: var(--radius);
+  background: var(--blue-light);
+  color: var(--blue-dark);
+  font-weight: 600;
+}
+
+/* RIGHT */
+.pokemon-info {
+  padding: 10px;
+}
+
+/* STATS */
+.stat-bar {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+
+.stat-fill {
+  height: 100%;
+  background: var(--blue-main);
+  border-radius: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .detail-card {
+    grid-template-columns: 1fr;
+  }
+}

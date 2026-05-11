@@ -1,60 +1,134 @@
+<div class="pokedex-root">
 
+  <header class="pdx-header">
+    <div class="pdx-header-inner">
 
+      <div class="pdx-logo">
+        <span class="pdx-logo-dot"></span>
+        <h1>Pokédex</h1>
+      </div>
 
+      <div class="pdx-search">
+        <span class="search-icon">⌕</span>
 
+        <input
+          type="text"
+          placeholder="Pesquisar Pokémon..."
+          [(ngModel)]="searchTerm"
+        />
 
+        @if (searchTerm) {
+          <button
+            class="search-clear"
+            type="button"
+            aria-label="Limpar pesquisa"
+            (click)="clearSearch()"
+          >
+            ✕
+          </button>
+        }
+      </div>
 
-<div class="container mt-4">
- @if (pokemons.length === 0) {
- <p class="text-center">Sem Pokémon disponíveis.</p>
- }
- <div class="mb-3 d-flex gap-2">
- <button class="btn btn-secondary" (click)="resetPokemons()">
- Reset
- </button>
+      <div class="pdx-count">
+        <span>{{ pokemons.length }}</span> carregados
+      </div>
+
+    </div>
+  </header>
+
+  <main class="pdx-main">
+
+    @if (feedbackMessage) {
+      <div class="pdx-toast">
+        {{ feedbackMessage }}
+      </div>
+    }
+
+    @if (teamService.getTeam().length > 0) {
+      <section class="pdx-team">
+
+        <div class="pdx-team-header">
+          <h2>⚔️ My Team</h2>
+
+          <div class="team-slots">
+            @for (slot of [0, 1, 2, 3, 4, 5]; track slot) {
+              <div
+                class="team-slot"
+                [class.filled]="slot < teamService.getTeam().length"
+              ></div>
+            }
+          </div>
+
+          <span class="team-counter">
+            {{ teamService.getTeam().length }}/{{ teamService.getMaxTeamSize() }}
+          </span>
+        </div>
+
+        <div class="team-grid">
+          @for (pokemon of teamService.getTeam(); track pokemon.id) {
+            <div class="team-card">
+              <img [src]="pokemon.image" [alt]="pokemon.name" />
+              <span>#{{ pokemon.id }}</span>
+              <p>{{ pokemon.name | titlecase }}</p>
+
+              <button
+                class="btn-remove"
+                type="button"
+                aria-label="Remover Pokémon"
+                (click)="removeFromTeam(pokemon)"
+              >
+                ✕
+              </button>
+            </div>
+          }
+        </div>
+
+      </section>
+    }
+
+    @if (filteredPokemons.length === 0 && !isLoading) {
+      <div class="pdx-empty">
+        <div class="pdx-empty-ball"></div>
+        <p>Nenhum Pokémon encontrado.</p>
+      </div>
+    }
+
+    <div class="pdx-grid">
+      @for (pokemon of filteredPokemons; track pokemon.id) {
+        <app-pokemon-card
+          [pokemon]="pokemon"
+          [isInTeam]="teamService.isInTeam(pokemon)"
+          [teamIsFull]="teamIsFull"
+          (addClicked)="addToTeam($event)"
+        />
+      }
+    </div>
+
+    <div class="pdx-sentinel">
+      @if (isLoading) {
+        <div class="pdx-loader">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      }
+
+      @if (!hasMore && !searchTerm) {
+        <p class="pdx-end">Todos os Pokémon carregados.</p>
+      }
+    </div>
+
+  </main>
+
+  @if (showBackToTop) {
+    <button
+      class="back-to-top"
+      type="button"
+      aria-label="Voltar ao topo"
+      (click)="scrollToTop()"
+    >
+      ↑
+    </button>
+  }
+
 </div>
-<div class="mb-4">
- <div class="row g-2">
- <div class="col-md-5">
- <input
- type="text"
- class="form-control"
- placeholder="Nome do Pokémon"
- [(ngModel)]="newPokemonName"
- >
- </div>
- <div class="col-md-5">
- <input
- type="text"
- class="form-control"
- placeholder="Tipo do Pokémon"
- [(ngModel)]="newPokemonType"
- >
- </div>
- <div class="col-md-2">
- <button class="btn btn-primary w-100" (click)="addPokemon()">
- Adicionar
- </button>
- </div>
- </div>
-</div>
-
-<div class="grid">
- @for (pokemon of pokemons; track pokemon.name) {
- <div class="pokemon-card">
-    <img [src]="pokemon.image" [alt]="pokemon.name" class="pokemon-image">
- <h3>{{ pokemon.name }}</h3>
- <span class="badge" [ngClass]="'type-' + pokemon.type.toLowerCase()">{{ pokemon.type }}</span>
- <p>Nível: {{ pokemon.level }}</p>
-
-
- <button class="btn btn-sm btn-danger mt-2" (click)="removePokemon(pokemon.name)">
- Remover
- </button>
- </div>
- }
-</div>
-</div>
-
-
-
